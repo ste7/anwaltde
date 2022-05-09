@@ -6,7 +6,7 @@
 git clone https://github.com/ste7/anwaltde.git
 cd anwaltde
 cp .env.example .env
-composser install
+composer install
 ./vendor/bin/sail artisan migrate:fresh --seed
 ./vendor/bin/sail up
 http://localhost
