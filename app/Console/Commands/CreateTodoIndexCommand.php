@@ -42,7 +42,9 @@ class CreateTodoIndexCommand extends Command
      */
     public function handle()
     {
-        $this->elasticClient->indices()->delete(['index' => 'todos']);
+        if ($this->elasticClient->indices()->exists(['index' => 'todos'])) {
+            $this->elasticClient->indices()->delete(['index' => 'todos']);
+        }
 
         $params = [
             'index' => 'todos',

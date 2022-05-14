@@ -14,7 +14,7 @@ http://localhost
 
 ### Run tests
 ```
-sail test
+./vendor/bin/sail test
 ```
 
 ### Post endpoints

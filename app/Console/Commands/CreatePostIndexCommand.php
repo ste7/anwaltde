@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Elasticsearch\ClientBuilder;
+use Illuminate\Support\Facades\Log;
 
 class CreatePostIndexCommand extends Command
 {
@@ -42,7 +43,9 @@ class CreatePostIndexCommand extends Command
      */
     public function handle()
     {
-        $this->elasticClient->indices()->delete(['index' => 'posts']);
+        if ($this->elasticClient->indices()->exists(['index' => 'posts'])) {
+            $this->elasticClient->indices()->delete(['index' => 'posts']);
+        }
 
         $params = [
             'index' => 'posts',
